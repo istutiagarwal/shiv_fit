@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shiv_fit/app/modules/calender/week/views/DateTitleView.dart';
+import 'package:shiv_fit/app/modules/calender/week/views/date_title_view.dart';
 
 class CalendarHeaderPanel extends StatelessWidget {
   const CalendarHeaderPanel({super.key});

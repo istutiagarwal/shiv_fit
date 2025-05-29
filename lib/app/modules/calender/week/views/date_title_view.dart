@@ -13,14 +13,9 @@ class DateTitleView extends StatelessWidget {
           () => Row(
         children: [
           Text(controller.selectedDate.value.day.toString()),
-          Text(DateFormat.MMMM()
-              .format(controller.selectedDate.value)
-              .toString()),
+          Text(DateFormat.MMMM().format(controller.selectedDate.value)),
         ],
       ),
     );
   }
-}
-
-class DateFormat {
 }

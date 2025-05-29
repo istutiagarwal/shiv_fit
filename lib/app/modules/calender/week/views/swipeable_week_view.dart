@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/modules/calender/week/controllers/week_calender_controller.dart';
+import 'package:shiv_fit/app/theme/app_dimens.dart';
 
-import 'WeekDateRow.dart';
+import 'week_date_row.dart';
 
 class SwipeableWeekView extends StatelessWidget {
   final WeekCalenderController controller = Get.put(WeekCalenderController());
@@ -12,9 +13,9 @@ class SwipeableWeekView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity! < 0) {
+        if (details.primaryVelocity! < AppDimens.dimens_0) {
           controller.onRightGesture(controller.selectedDate.value);
-        } else if (details.primaryVelocity! > 0) {
+        } else if (details.primaryVelocity! > AppDimens.dimens_0) {
           controller.onLeftGesture(controller.selectedDate.value);
         }
       },

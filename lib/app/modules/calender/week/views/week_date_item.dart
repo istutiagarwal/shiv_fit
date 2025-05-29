@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/modules/calender/week/controllers/week_calender_controller.dart';
+import 'package:shiv_fit/app/modules/calender/week/views/selected_day_indicator.dart';
+import 'package:shiv_fit/app/theme/app_dimens.dart';
 
 class WeekDateItem extends StatelessWidget {
   final WeekCalenderController controller = Get.put(WeekCalenderController());
@@ -13,27 +15,8 @@ class WeekDateItem extends StatelessWidget {
     final isSelected = controller.isSelectedDate(date);
     return Column(
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            Visibility(
-              visible: isSelected,
-              child: Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.yellow,
-                ),
-              ),
-            ),
-            Text(
-              controller.getWeekdayInitial(date),
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(height: 4),
+        SelectedDayIndicator(date : date,isSelected : isSelected),
+        SizedBox(height: AppDimens.dimens_4),
         TextButton(
           onPressed: () {
             controller.onTap(date);

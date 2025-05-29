@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/modules/calender/week/controllers/week_calender_controller.dart';
-import 'package:shiv_fit/app/modules/calender/week/views/WeekDateItem.dart';
+import 'package:shiv_fit/app/modules/calender/week/views/week_date_item.dart';
 
 class WeekDateRow extends StatelessWidget {
   final WeekCalenderController controller = Get.put(WeekCalenderController());
@@ -14,13 +14,14 @@ class WeekDateRow extends StatelessWidget {
       final weekDates = controller.generateWeekDates(
           controller.getCurrentWeekMonday(controller.selectedDate.value));
       return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: weekDates
-            .map((date) => WeekDateItem(
-                  date: date,
-                  isSelected: controller.isSelectedDate(date),
-                  controller: controller,
-                ))
+            .map((date) => Expanded(
+              child: WeekDateItem(
+                    date: date,
+                    isSelected: controller.isSelectedDate(date),
+                  ),
+            ))
             .toList(),
       );
     });
