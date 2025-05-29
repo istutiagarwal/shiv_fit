@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shiv_fit/app/modules/calender/week/views/week_calender_view.dart';
-import 'package:shiv_fit/app/modules/home/controllers/home_controler.dart';
+import 'package:shiv_fit/app/modules/calender/month/views/month_calender_view.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class HomeView extends StatelessWidget {
@@ -10,7 +9,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WeekCalenderView(),
+      body: MonthCalenderView(),
     );
   }
 }

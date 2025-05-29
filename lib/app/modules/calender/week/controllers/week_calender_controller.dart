@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/base/base_controller.dart';
+import 'package:shiv_fit/app/data/values/number.dart';
 
 class WeekCalenderController extends BaseController {
   DateTime now = DateTime.now();
@@ -14,21 +15,21 @@ class WeekCalenderController extends BaseController {
   }
 
   DateTime getCurrentWeekMonday(DateTime date) =>
-      date.subtract(Duration(days: date.weekday - 1));
+      date.subtract(Duration(days: date.weekday - Numbers.one));
 
   List<DateTime> generateWeekDates(DateTime monday) {
-    return List.generate(7, (index) => monday.add(Duration(days: index)));
+    return List.generate(Numbers.seven, (index) => monday.add(Duration(days: index)));
   }
 
   DateTime getNextWeekMonday(DateTime currentMonday) =>
-      currentMonday.add(const Duration(days: 7));
+      currentMonday.add(const Duration(days: Numbers.seven));
 
   DateTime getPreviousWeekMonday(DateTime currentMonday) =>
-      currentMonday.subtract(const Duration(days: 7));
+      currentMonday.subtract(const Duration(days: Numbers.seven));
 
   String getWeekdayInitial(DateTime date) {
     const initials = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-    return initials[date.weekday - 1];
+    return initials[date.weekday - Numbers.one];
   }
 
   void onLeftGesture(DateTime date) {
