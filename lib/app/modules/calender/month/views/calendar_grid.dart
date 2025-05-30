@@ -12,7 +12,7 @@ class CalendarGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        itemCount: Numbers.fourty_nine,
+        itemCount: Numbers.fourtyNine,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: Numbers.seven,
           mainAxisSpacing: AppDimens.dimens_4,

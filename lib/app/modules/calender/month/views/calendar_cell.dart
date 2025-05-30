@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/modules/calender/month/controllers/month_calender_controller.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
+import 'package:shiv_fit/app/theme/app_dimens.dart';
 
 class CalendarCell extends StatelessWidget {
   final int calendarIndex;
-  final MonthCalenderController controller = Get.put(MonthCalenderController());
-  CalendarCell({super.key, required this.calendarIndex});
+  final MonthCalenderController controller = Get.find<MonthCalenderController>();  CalendarCell({super.key, required this.calendarIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,8 @@ class CalendarCell extends StatelessWidget {
                 Visibility(
                   visible: isSelectedDate,
                   child: Container(
+                    width: AppDimens.dimens_32,
+                    height: AppDimens.dimens_32,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,

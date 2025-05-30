@@ -37,7 +37,7 @@ class MonthCalenderController extends BaseController {
 
   List<DateTime> generateDatesOfMonth(DateTime monday) {
     return List.generate(
-        Numbers.fourty_two, (index) => monday.add(Duration(days: index)));
+        Numbers.fourtyTwo, (index) => monday.add(Duration(days: index)));
   }
 
   List<DateTime> getPreviousMonth(DateTime date) {
