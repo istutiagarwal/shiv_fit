@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shiv_fit/app/app.dart';
 
-void main() {
+void main() async {
+  await initGetStorage();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const App());
+}
+
+Future initGetStorage() async {
+  await GetStorage.init();
 }
 
