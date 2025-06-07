@@ -22,7 +22,7 @@ class ContainerQuestionRow extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(
+          icon:  Icon(
             Icons.close,
             color: AppColors.red,
           ),

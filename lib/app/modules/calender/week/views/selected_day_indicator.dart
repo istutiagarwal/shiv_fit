@@ -22,7 +22,7 @@ class SelectedDayIndicator extends StatelessWidget {
           child: Container(
             width: AppDimens.dimens_32,
             height: AppDimens.dimens_32,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.yellow,
             ),

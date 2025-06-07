@@ -27,7 +27,7 @@ class CalendarCell extends StatelessWidget {
                     width: AppDimens.dimens_32,
                     height: AppDimens.dimens_32,
                     alignment: Alignment.center,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.yellow,
                     ),
