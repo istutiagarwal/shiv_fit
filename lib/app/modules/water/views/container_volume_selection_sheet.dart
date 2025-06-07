@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/number.dart';
 import 'package:shiv_fit/app/modules/water/controller/water_controller.dart';
+import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
 import 'package:shiv_fit/service/water_sheet_tap_helper.dart';
@@ -28,7 +29,7 @@ class ContainerVolumeSelectionSheet extends StatelessWidget {
               Expanded(
                 child: Text(
                   AppConstant.water.adjustContainerVolume,
-                  style: Styles.blackBold(),
+                  style: Styles.blackBold(AppDimens.dimens_18, AppColors.black),
                 ),
               ),
               Expanded(
@@ -37,13 +38,23 @@ class ContainerVolumeSelectionSheet extends StatelessWidget {
                   height: AppDimens.dimens_70,
                 ),
               ),
-              Expanded(child: Text(controller.getSelectedContainerType(),style: Styles.blackBold12(),)),
+              Expanded(
+                  child: Text(
+                controller.getSelectedContainerType(),
+                style: Styles.blackBold(AppDimens.dimens_12, AppColors.black),
+              )),
               Obx(() => Visibility(
                     visible: controller.isTextFieldVisible.value,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppConstant.water.mlUnit,style: Styles.blackRegular12(),),
+                        Text(
+                          AppConstant.water.mlUnit,
+                          style: Styles.blackRegular(
+                            AppDimens.dimens_12,
+                            AppColors.black,
+                          ),
+                        ),
                         SizedBox(
                           width: Numbers.eighty,
                           child: TextField(
@@ -61,7 +72,9 @@ class ContainerVolumeSelectionSheet extends StatelessWidget {
                                   horizontal: Numbers.eight,
                                   vertical: Numbers.four),
                             ),
-                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                           ),
                         ),
                       ],
@@ -80,7 +93,10 @@ class ContainerVolumeSelectionSheet extends StatelessWidget {
                     },
                     child: Text(
                       AppConstant.water.changeWaterContainer,
-                      style: Styles.blackBold12(),
+                      style: Styles.blackBold(
+                        AppDimens.dimens_12,
+                        AppColors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -94,7 +110,10 @@ class ContainerVolumeSelectionSheet extends StatelessWidget {
                       },
                       child: Text(
                         AppConstant.water.updateContainerVolume,
-                        style: Styles.blackBold12(),
+                        style: Styles.blackBold(
+                          AppDimens.dimens_12,
+                          AppColors.black,
+                        ),
                       ),
                     )),
               ),
@@ -104,12 +123,18 @@ class ContainerVolumeSelectionSheet extends StatelessWidget {
                   },
                   child: Text(
                     AppConstant.water.done,
-                    style: Styles.blackBold12(),
+                    style: Styles.blackBold(
+                      AppDimens.dimens_12,
+                      AppColors.black,
+                    ),
                   )),
               Expanded(
                 child: Text(
                   AppConstant.water.editableInSettings,
-                  style: Styles.blackBold12(),
+                  style: Styles.blackBold(
+                    AppDimens.dimens_12,
+                    AppColors.black,
+                  ),
                 ),
               ),
             ],
