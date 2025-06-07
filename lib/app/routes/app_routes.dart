@@ -3,4 +3,5 @@ abstract class Routes {
   static const calender ='/calender';
   static const weekCalender = '/weekCalender';
   static const monthCalender = '/monthCalender';
+  static const water ='/water';
 }

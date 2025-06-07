@@ -7,6 +7,8 @@ import 'package:shiv_fit/app/modules/calender/week/bindings/week_calender_bindin
 import 'package:shiv_fit/app/modules/calender/week/views/week_calender_view.dart';
 import 'package:shiv_fit/app/modules/home/bindings/home_binding.dart';
 import 'package:shiv_fit/app/modules/home/views/home_view.dart';
+import 'package:shiv_fit/app/modules/water/bindings/water_binding.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_view.dart';
 
 import 'app_routes.dart';
 
@@ -29,8 +31,13 @@ class AppPages {
     ),
     GetPage(
       name: Routes.calender,
-      page: () => CalenderView(),
+      page: () => const CalenderView(),
       binding: CalenderBinding(),
+    ),
+    GetPage(
+      name: Routes.water,
+      page: () => WaterView(),
+      binding: WaterBinding(),
     )
   ];
 }

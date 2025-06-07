@@ -15,4 +15,7 @@ class _WaterConstants {
       "This value is editable anytime via Settings";
   final String done = "Done";
   final String addWater = "Add Water";
+  final String day = "Day";
+  final String month = "Month";
+  final String week = "Week";
 }

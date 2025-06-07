@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:shiv_fit/app/modules/water/views/bottom_sheets/main_sheets/container_selection_sheet.dart';
 import 'package:shiv_fit/app/modules/water/views/bottom_sheets/main_sheets/container_volume_selection_sheet.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_day_view.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_month_view.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_week_view.dart';
 
-class NavigationHelper{
-
-  static void openContainerSelectionSheet(BuildContext context){
+class NavigationHelper {
+  static void openContainerSelectionSheet(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      showBottomSheet(context: context,
-        builder: (context) =>
-            ContainerSelectionSheet(),);
+      showBottomSheet(
+        context: context,
+        builder: (context) => ContainerSelectionSheet(),
+      );
     });
   }
-  static void openVolumeContainerSheet(BuildContext context){
+
+  static void openVolumeContainerSheet(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      showBottomSheet(context: context,
-        builder: (context) =>
-            ContainerVolumeSelectionSheet(),);
+      showBottomSheet(
+        context: context,
+        builder: (context) => ContainerVolumeSelectionSheet(),
+      );
     });
   }
 

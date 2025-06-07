@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:shiv_fit/app/data/values/app_constant.dart';
-import 'package:shiv_fit/app/modules/water/views/bottom_sheets/main_sheets/container_selection_sheet.dart';
+import 'package:get/get.dart';
+import 'package:shiv_fit/app/data/enums/time_range_enum.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_month_view.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_week_view.dart';
+import 'package:shiv_fit/widgets/crousal/time_range_selector.dart';
+import 'package:shiv_fit/widgets/crousal/time_range_selector_controller.dart';
+
+import 'water_day_view.dart';
 
 class WaterView extends StatelessWidget {
-  const WaterView({super.key});
+  final TimeRangeSelectorController timeRangeController = Get.put(TimeRangeSelectorController());
+
+  WaterView({super.key,});
+
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Builder(
-        builder: (context) {
-          return ElevatedButton(
-              onPressed: () {
-                showContainerBottomSheet(context);
-              },
-              child:  Text(AppConstant.water.addWater));
-        }
-      ),
+    return Scaffold(
+      body: SafeArea(child: Column(
+        children: [
+          TimeRangeSelector(),
+          Obx(() {
+            switch(timeRangeController.selectedRange.value){
+              case TimeRangeEnum.day:
+                return const WaterDayView();
+              case TimeRangeEnum.month:
+                return const WaterMonthView();
+              case TimeRangeEnum.week:
+                return const WaterWeekView();
+            }
+          }),
+        ],
+      )),
     );
   }
 }
