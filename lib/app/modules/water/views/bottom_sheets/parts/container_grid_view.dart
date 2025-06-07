@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shiv_fit/app/data/values/number.dart';
-import 'package:shiv_fit/app/modules/water/views/container_item_tile.dart';
+import 'package:shiv_fit/app/modules/water/views/bottom_sheets/parts/container_item_tile.dart';
 
 class ContainerGridView extends StatelessWidget {
   const ContainerGridView({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shiv_fit/app/modules/water/views/container_selection_sheet.dart';
-import 'package:shiv_fit/app/modules/water/views/container_volume_selection_sheet.dart';
+import 'package:shiv_fit/app/modules/water/views/bottom_sheets/main_sheets/container_selection_sheet.dart';
+import 'package:shiv_fit/app/modules/water/views/bottom_sheets/main_sheets/container_volume_selection_sheet.dart';
 
 class NavigationHelper{
 

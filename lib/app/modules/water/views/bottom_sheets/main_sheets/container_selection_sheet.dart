@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shiv_fit/app/data/values/number.dart';
-import 'package:shiv_fit/app/modules/water/views/container_grid_view.dart';
-import 'package:shiv_fit/app/modules/water/views/container_question_row.dart';
+import 'package:shiv_fit/app/modules/water/views/bottom_sheets/parts/container_grid_view.dart';
+import 'package:shiv_fit/app/modules/water/views/bottom_sheets/parts/container_question_row.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 
 class ContainerSelectionSheet extends StatelessWidget {

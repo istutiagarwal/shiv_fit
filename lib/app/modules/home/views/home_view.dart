@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shiv_fit/app/modules/water/views/water_view.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_view.dart';
 class HomeView extends StatelessWidget {
    HomeView({super.key,});
 
