@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class AppColors {
   static bool get isDark => Get.context?.theme.brightness == Brightness.dark;
 
-  static get black => isDark ? Colors.black : Colors.white;
+  static get black => isDark ? Colors.white : Colors.black;
 
   static get yellow => isDark ? const Color(0xFFFFD54F) : Colors.yellow;
 

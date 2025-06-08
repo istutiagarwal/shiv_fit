@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/enums/time_range_enum.dart';
+import 'package:shiv_fit/app/data/values/app_constant.dart';
+import 'package:shiv_fit/app/modules/water/controller/water_day_details_controller.dart';
 import 'package:shiv_fit/app/modules/water/views/screens/water_month_view.dart';
 import 'package:shiv_fit/app/modules/water/views/screens/water_week_view.dart';
 import 'package:shiv_fit/widgets/crousal/time_range_selector.dart';
@@ -10,6 +12,7 @@ import 'water_day_view.dart';
 
 class WaterView extends StatelessWidget {
   final TimeRangeSelectorController timeRangeController = Get.put(TimeRangeSelectorController());
+  final WaterDayDetailsController waterController = Get.put(WaterDayDetailsController());
 
   WaterView({super.key,});
 
@@ -30,6 +33,7 @@ class WaterView extends StatelessWidget {
                 return const WaterWeekView();
             }
           }),
+          ElevatedButton(onPressed: (){waterController.onAddWater()}, child: Text(AppConstant.water.addWater))
         ],
       )),
     );
