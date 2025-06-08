@@ -14,7 +14,6 @@ class WaterDayDetailsController extends WaterController {
   }
 
   void onAddWater(double waterDrank) {
-    final waterDrank = Storage.loadContainerData().values.;
     currentWaterIntake.value = currentWaterIntake.value + waterDrank;
   }
 

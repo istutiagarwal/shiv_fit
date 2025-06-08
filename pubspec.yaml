@@ -42,9 +42,10 @@ dependencies:
   percent_indicator: ^4.2.2
 
   #firebase
-  firebase_core: ^2.27.0
-  firebase_storage: ^11.7.2
-  cloud_firestore: ^4.15.0
+  firebase_core: ^2.30.0
+  cloud_firestore: ^4.17.4
+  firebase_auth: ^4.19.1
+  firebase_storage: ^11.7.4
 
   #shimmer
   shimmer: ^3.0.0

@@ -33,7 +33,6 @@ class WaterView extends StatelessWidget {
                 return const WaterWeekView();
             }
           }),
-          ElevatedButton(onPressed: (){waterController.onAddWater()}, child: Text(AppConstant.water.addWater))
         ],
       )),
     );
