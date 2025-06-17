@@ -5,9 +5,8 @@ import 'package:shiv_fit/app/theme/app_dimens.dart';
 
 import 'week_date_row.dart';
 
-class SwipeableWeekView extends StatelessWidget {
-  final WeekCalenderController controller = Get.put(WeekCalenderController());
-  SwipeableWeekView({super.key});
+class SwipeableWeekView extends GetView<WeekCalenderController> {
+  const SwipeableWeekView({super.key});
 
   @override
   Widget build(BuildContext context) {

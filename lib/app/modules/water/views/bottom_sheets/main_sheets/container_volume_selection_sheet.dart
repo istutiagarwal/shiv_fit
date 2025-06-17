@@ -9,8 +9,7 @@ import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
 import 'package:shiv_fit/service/water_sheet_tap_helper.dart';
 
-class ContainerVolumeSelectionSheet extends StatelessWidget {
-  final WaterController controller = Get.put(WaterController());
+class ContainerVolumeSelectionSheet extends GetView<WaterController> {
   final TextEditingController mlInputController = TextEditingController();
 
   ContainerVolumeSelectionSheet({super.key});

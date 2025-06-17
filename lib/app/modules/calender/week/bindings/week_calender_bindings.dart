@@ -4,6 +4,8 @@ import 'package:shiv_fit/app/modules/calender/week/controllers/week_calender_con
 class WeekCalenderBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => WeekCalenderController());
+    Get.lazyPut(() {
+      return WeekCalenderController();
+    });
   }
 }

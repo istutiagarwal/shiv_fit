@@ -6,11 +6,8 @@ import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
 
-class WaterConsumptionChartCard extends StatelessWidget {
-  final WaterDayDetailsController controller =
-      Get.put(WaterDayDetailsController());
-
-  WaterConsumptionChartCard({super.key});
+class WaterConsumptionChartCard extends GetView<WaterDayDetailsController> {
+  const WaterConsumptionChartCard({super.key});
 
   @override
   Widget build(BuildContext context) {

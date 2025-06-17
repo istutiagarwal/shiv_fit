@@ -4,18 +4,18 @@ import 'package:shiv_fit/app/modules/calender/month/controllers/month_calender_c
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 
-class CalendarCell extends StatelessWidget {
+class CalendarCell extends GetView<MonthCalenderController> {
   final int calendarIndex;
-  final MonthCalenderController controller = Get.find<MonthCalenderController>();  CalendarCell({super.key, required this.calendarIndex});
+
+  const CalendarCell({super.key, required this.calendarIndex});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       bool isSelectedDate =
-      controller.isSelectedDate(controller.calendarDates[calendarIndex]);
+          controller.isSelectedDate(controller.calendarDates[calendarIndex]);
       return GestureDetector(
-        onTap: () =>
-            controller.onTap(controller.calendarDates[calendarIndex]),
+        onTap: () => controller.onTap(controller.calendarDates[calendarIndex]),
         child: Column(
           children: [
             Stack(

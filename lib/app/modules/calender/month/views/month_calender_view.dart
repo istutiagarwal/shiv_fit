@@ -4,10 +4,8 @@ import 'package:shiv_fit/app/modules/calender/month/controllers/month_calender_c
 import 'package:shiv_fit/app/modules/calender/month/views/month_calender_header.dart';
 import 'package:shiv_fit/app/modules/calender/month/views/swipeable_month_view.dart';
 
-class MonthCalenderView extends StatelessWidget {
-  final MonthCalenderController controller = Get.put(MonthCalenderController());
-
-  MonthCalenderView({super.key});
+class MonthCalenderView extends GetView<MonthCalenderController> {
+  const MonthCalenderView({super.key});
 
   @override
   Widget build(BuildContext context) {

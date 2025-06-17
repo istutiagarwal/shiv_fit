@@ -6,11 +6,10 @@ import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
 import 'package:shiv_fit/service/water_sheet_tap_helper.dart';
 
-class ContainerItemTile extends StatelessWidget {
+class ContainerItemTile extends GetView<WaterController> {
   final int index;
-  final WaterController controller = Get.put(WaterController());
 
-  ContainerItemTile({super.key, required this.index});
+  const ContainerItemTile({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +26,17 @@ class ContainerItemTile extends StatelessWidget {
         ),
         Text(
           controller.getContainerType(index),
-          style: Styles.blackBold(AppDimens.dimens_12, AppColors.black,),
+          style: Styles.blackBold(
+            AppDimens.dimens_12,
+            AppColors.black,
+          ),
         ),
         Text(
           controller.getContainerVolume(index),
-          style: Styles.blackRegular(AppDimens.dimens_12, AppColors.black,),
+          style: Styles.blackRegular(
+            AppDimens.dimens_12,
+            AppColors.black,
+          ),
         ),
       ],
     );

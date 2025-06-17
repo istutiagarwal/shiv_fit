@@ -5,10 +5,8 @@ import 'package:shiv_fit/app/modules/calender/week/views/calendar_header_panel.d
 import 'package:shiv_fit/app/modules/calender/week/views/swipeable_week_view.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 
-class WeekCalenderView extends StatelessWidget {
-  final WeekCalenderController controller = Get.put(WeekCalenderController());
-
-  WeekCalenderView({
+class WeekCalenderView extends GetView<WeekCalenderController> {
+  const WeekCalenderView({
     super.key,
   });
 

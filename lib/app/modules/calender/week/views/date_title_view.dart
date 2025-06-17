@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shiv_fit/app/modules/calender/week/controllers/week_calender_controller.dart';
 
-class DateTitleView extends StatelessWidget {
-  final WeekCalenderController controller = Get.put(WeekCalenderController());
-   DateTitleView({super.key});
+class DateTitleView extends GetView<WeekCalenderController> {
+   const DateTitleView({super.key});
 
   @override
   Widget build(BuildContext context) {

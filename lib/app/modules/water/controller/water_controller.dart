@@ -1,7 +1,7 @@
 import 'package:get/get_rx/get_rx.dart';
 import 'package:shiv_fit/app/base/base_controller.dart';
 import 'package:shiv_fit/app/data/enums/water_container_type_enum.dart';
-import 'package:shiv_fit/app/data/models/dto/container_item.dart';
+import 'package:shiv_fit/app/data/models/request/container_item.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
 import 'package:shiv_fit/utils/storage/storage_utils.dart';
 

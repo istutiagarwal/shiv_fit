@@ -5,9 +5,8 @@ import 'package:shiv_fit/app/modules/calender/month/controllers/month_calender_c
 import 'package:shiv_fit/app/modules/calender/month/views/calendar_cell.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 
-class CalendarGrid extends StatelessWidget {
-  final MonthCalenderController controller = Get.put(MonthCalenderController());
-  CalendarGrid({super.key});
+class CalendarGrid extends GetView<MonthCalenderController> {
+  const CalendarGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,10 @@ class CalendarGrid extends StatelessWidget {
           childAspectRatio: AppDimens.dimens_1,
         ),
         itemBuilder: (
-            context,
-            index,
-            ) {
-          if(index <Numbers.seven){
+          context,
+          index,
+        ) {
+          if (index < Numbers.seven) {
             return Center(
               child: Text(controller.daysInWeek[index]),
             );

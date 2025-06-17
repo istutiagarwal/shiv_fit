@@ -4,6 +4,8 @@ import 'package:shiv_fit/app/modules/calender/month/controllers/month_calender_c
 class MonthCalenderBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MonthCalenderController>(() => MonthCalenderController());
+    Get.lazyPut<MonthCalenderController>(() {
+      return MonthCalenderController();
+    });
   }
 }
