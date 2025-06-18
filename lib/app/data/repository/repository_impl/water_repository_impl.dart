@@ -8,31 +8,28 @@ import 'package:shiv_fit/service/water_hive_service.dart';
 import 'package:shiv_fit/utils/helper/api_exception.dart';
 import 'package:shiv_fit/utils/helper/firebase_exception_handler.dart';
 
-class WaterRepositoryImpl extends BaseRepository implements WaterRepository{
+class WaterRepositoryImpl extends BaseRepository implements WaterRepository {
   @override
-  Future<RepoResponse<WaterLogResponseDto>> uploadWaterLog(WaterLogRequestDto waterLog) async {
+  Future<RepoResponse<WaterLogResponseDto>> uploadWaterLog(
+      WaterLogRequestDto waterLog) async {
     final responseDto = WaterLogResponseDto.fromRequest(
       waterLog,
       timestamp: DateTime.now(),
     );
     await WaterHiveService.addWaterLog(log: responseDto);
     try {
-
-
-      final result = await       firebaseService.upload(
+      final result = await firebaseService.upload(
         collectionPath: CollectionPaths.waterLogs,
         data: responseDto.toJson(),
       );
 
       if (result.error != null) {
-        return RepoResponse(error: APIException( message: result.error.toString()));
+        return RepoResponse(
+            error: APIException(message: result.error.toString()));
       }
       return RepoResponse(data: null);
     } catch (e) {
       return RepoResponse(error: ExceptionHandler.handle(e));
     }
   }
-  
-
-
 }
