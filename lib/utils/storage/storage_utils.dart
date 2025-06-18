@@ -1,7 +1,7 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:shiv_fit/app/data/models/dto/container_item.dart';
+import 'package:shiv_fit/app/data/models/request/container_item.dart';
 
-class Storage{
+class Storage {
   Storage._privateConstructor();
 
   static final _box = GetStorage();
@@ -15,9 +15,11 @@ class Storage{
   static Map<String, ContainerItem> loadContainerData() {
     final raw = _box.read<Map>(_key);
     if (raw == null) return {};
-    return raw.map((key, value) => MapEntry(key, ContainerItem.fromJson(Map<String, dynamic>.from(value))));
+    return raw.map((key, value) => MapEntry(
+        key, ContainerItem.fromJson(Map<String, dynamic>.from(value))));
   }
-  static void eraseData(){
+
+  static void eraseData() {
     _box.erase();
   }
 }

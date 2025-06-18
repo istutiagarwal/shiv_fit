@@ -1,6 +1,12 @@
-import 'package:get/get_instance/src/get_instance.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 
 class BaseController<T> extends GetxController {
-  T get repository => GetInstance().find<T>();
+  T get repository {
+    try {
+      return Get.find<T>();
+    } catch (e) {
+      throw Exception(
+          'Repository of type $T not found. Did you forget to bind it?');
+    }
+  }
 }

@@ -7,8 +7,12 @@ import 'package:shiv_fit/app/modules/water/controller/water_day_details_controll
 class WaterBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut((){return WaterController();});
-    Get.lazyPut((){return WaterDayDetailsController();});
-    Get.lazyPut<WaterRepository>(() => WaterRepositoryImpl());
+    Get.lazyPut(() {
+      return WaterController();
+    });
+    Get.lazyPut(() {
+      return WaterDayDetailsController();
+    });
+    Get.put<WaterRepository>(WaterRepositoryImpl());
   }
 }

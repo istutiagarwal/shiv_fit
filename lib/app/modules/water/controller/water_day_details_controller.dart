@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
-import 'package:shiv_fit/app/modules/water/controller/water_controller.dart';
-import 'package:shiv_fit/utils/storage/storage_utils.dart';
+import 'package:shiv_fit/app/base/base_controller.dart';
+import 'package:shiv_fit/app/data/models/dto/handle_error.dart';
+import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
+import 'package:shiv_fit/app/data/repository/water_repository.dart';
 
-class WaterDayDetailsController extends WaterController {
+class WaterDayDetailsController extends BaseController<WaterRepository> {
   final Rx<DateTime> date = DateTime.now().obs;
   final dailyWaterGoal = 2000;
   late RxDouble currentWaterIntake;
@@ -13,8 +15,13 @@ class WaterDayDetailsController extends WaterController {
     currentWaterIntake = 0.5.obs;
   }
 
-  void onAddWater(double waterDrank) {
-    currentWaterIntake.value = currentWaterIntake.value + waterDrank;
+  Future<void> onAddWater(WaterLogRequestDto waterLog) async {
+    final response = await repository.uploadWaterLog(waterLog);
+    if (response.data != null) {
+      //currentWaterIntake.value = currentWaterIntake.value + response.data.;
+    } else {
+      HandleError.handleError(response.error);
+    }
   }
 
   void onLeftOperandClick() {

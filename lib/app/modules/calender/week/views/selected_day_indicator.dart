@@ -4,12 +4,11 @@ import 'package:shiv_fit/app/modules/calender/week/controllers/week_calender_con
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 
-class SelectedDayIndicator extends StatelessWidget {
-  final WeekCalenderController controller = Get.put(WeekCalenderController());
+class SelectedDayIndicator extends GetView<WeekCalenderController> {
   final DateTime date;
   final bool isSelected;
 
-  SelectedDayIndicator(
+  const SelectedDayIndicator(
       {super.key, required this.date, required this.isSelected});
 
   @override
@@ -22,7 +21,7 @@ class SelectedDayIndicator extends StatelessWidget {
           child: Container(
             width: AppDimens.dimens_32,
             height: AppDimens.dimens_32,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.yellow,
             ),
