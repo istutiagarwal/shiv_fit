@@ -18,4 +18,8 @@ class _WaterConstants {
   final String day = "Day";
   final String month = "Month";
   final String week = "Week";
+  final String hydration = "Hydration";
+  final String today = "Today";
+  final String timeToRefill = "Thirsty? Time to refill.";
+  final String waterIntake = "Water Intake";
 }
