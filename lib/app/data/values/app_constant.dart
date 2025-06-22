@@ -39,4 +39,11 @@ class _WaterConstants {
 
   final String hydrationReminder = "Hydration Reminder";
   final String addHydrationReminder = "Add More Reminders";
+
+  //Water stats
+  final String containerUsage = "Container Usage";
+  final String container = "Container";
+  final String volume = "Volume";
+  final String usage = "Usage";
+  final String count = "Count";
 }

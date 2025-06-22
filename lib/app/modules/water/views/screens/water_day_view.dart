@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
 import 'package:shiv_fit/app/modules/water/controller/water_day_details_controller.dart';
 import 'package:shiv_fit/app/modules/water/views/cards/daily_water_logs_card.dart';
+import 'package:shiv_fit/app/modules/water/views/cards/water_container_stats_card.dart';
 import 'package:shiv_fit/app/modules/water/views/cards/water_day_header.dart';
 import 'package:shiv_fit/app/modules/water/views/cards/water_hydration_reminder_card.dart';
 
@@ -23,7 +24,8 @@ class WaterDayView extends GetView<WaterDayDetailsController> {
               volume: "250ml",
               timeStamp: "02:36 Pm",
             ),
-            WaterHydrationReminderCard()
+            //WaterHydrationReminderCard(),
+            WaterContainerStatsCard(),
           ],
         ),
       ),
