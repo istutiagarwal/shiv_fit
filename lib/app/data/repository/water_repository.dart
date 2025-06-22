@@ -6,4 +6,6 @@ import 'package:shiv_fit/app/data/models/response/water_log_response_dto.dart';
 abstract class WaterRepository extends BaseRepository {
   Future<RepoResponse<WaterLogResponseDto>> uploadWaterLog(
       WaterLogRequestDto dto);
+
+  Future<RepoResponse<String>> fetchDailyWaterGoal();
 }

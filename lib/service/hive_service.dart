@@ -16,4 +16,14 @@ class HiveService {
       return await Hive.openBox<T>(boxName);
     }
   }
+
+  static Future<void> putData<T>(String boxName, dynamic key, T value) async{
+    final box = await openBox<T>(boxName);
+    await  box.put(key,value);
+  }
+
+  static Future<T?> getKey<T>(String boxName, dynamic key) async{
+    final box = await openBox<T>(boxName);
+    return box.get(key);
+  }
 }

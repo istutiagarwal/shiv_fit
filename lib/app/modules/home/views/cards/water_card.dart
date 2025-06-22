@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shiv_fit/app/data/values/animations.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
+import 'package:shiv_fit/app/modules/water/controller/water_day_details_controller.dart';
+import 'package:shiv_fit/app/modules/water/views/screens/water_view.dart';
+import 'package:shiv_fit/app/routes/app_routes.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
+import 'package:shiv_fit/widgets/buttons/primary_action_button.dart';
 
-
-class WaterCard extends StatelessWidget {
+class WaterCard extends GetView<WaterDayDetailsController>{
   const WaterCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:  EdgeInsets.all(AppDimens.dimens_16),
-      margin:  EdgeInsets.all(AppDimens.dimens_14),
+      padding: EdgeInsets.all(AppDimens.dimens_16),
+      margin: EdgeInsets.all(AppDimens.dimens_14),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: AppColors.gradientColors,
@@ -23,10 +27,11 @@ class WaterCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         border: Border.all(
-          color: AppColors.iceyBlue, // Optional border
+          color: AppColors.iceyBlue,
           width: AppDimens.dimens_1,
         ),
-        borderRadius: BorderRadius.circular(AppDimens.dimens_30), // Optional rounded corners
+        borderRadius: BorderRadius.circular(
+            AppDimens.dimens_30),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +44,12 @@ class WaterCard extends StatelessWidget {
                 AppConstant.water.hydration,
                 style: Styles.blackBold(AppDimens.dimens_22, AppColors.black),
               ),
-              const Icon(Icons.chevron_right),
+              IconButton(
+                onPressed: () {
+                  Get.toNamed(Routes.water);
+                },
+                icon: Icon(Icons.chevron_right),
+              ),
             ],
           ),
           Row(
@@ -48,20 +58,25 @@ class WaterCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "1.2L/3L",
-                    style:
-                        Styles.blackBold(AppDimens.dimens_18, AppColors.black),
-                  ),
+                  Obx((){
+                   return Text(
+                      '2L/${controller.dailyWaterGoal.value}',
+                      style:
+                      Styles.blackBold(AppDimens.dimens_18, AppColors.black),
+                    );
+                  }),
                   Row(
                     children: [
                       Text(AppConstant.water.today),
-                       SizedBox(
+                      SizedBox(
                         width: AppDimens.dimens_20,
                       ),
                       Text("3-day Streak"),
                       Padding(
-                        padding:  EdgeInsets.only(bottom: AppDimens.dimens_18,left: AppDimens.dimens_0,),
+                        padding: EdgeInsets.only(
+                          bottom: AppDimens.dimens_18,
+                          left: AppDimens.dimens_0,
+                        ),
                         child: Lottie.asset(
                           Animations.acStreakFire,
                           width: AppDimens.dimens_50,
@@ -100,7 +115,7 @@ class WaterCard extends StatelessWidget {
               ),
             ],
           ),
-           SizedBox(
+          SizedBox(
             height: AppDimens.dimens_6,
           ),
           LinearProgressIndicator(
@@ -111,28 +126,10 @@ class WaterCard extends StatelessWidget {
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding:  EdgeInsets.symmetric(vertical: AppDimens.dimens_14),
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(AppDimens.dimens_32),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.add),
-                  SizedBox(width: AppDimens.dimens_8),
-                  Text(AppConstant.water.addWater),
-                ],
-              ),
-            ),
+          PrimaryActionButton(
+            icon: Icons.add,
+            label: AppConstant.water.addWater,
+            onPressed: () {},
           ),
         ],
       ),

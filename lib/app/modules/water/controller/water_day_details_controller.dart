@@ -6,13 +6,14 @@ import 'package:shiv_fit/app/data/repository/water_repository.dart';
 
 class WaterDayDetailsController extends BaseController<WaterRepository> {
   final Rx<DateTime> date = DateTime.now().obs;
-  final dailyWaterGoal = 2000;
+  final Rx<String> dailyWaterGoal = ''.obs;
   late RxDouble currentWaterIntake;
 
   @override
   void onInit() {
     super.onInit();
     currentWaterIntake = 0.5.obs;
+    fetchDailyWaterGoal();
   }
 
   Future<void> onAddWater(WaterLogRequestDto waterLog) async {
@@ -33,6 +34,20 @@ class WaterDayDetailsController extends BaseController<WaterRepository> {
   }
 
   String getCurrentWaterTaken() {
-    return '${(currentWaterIntake.value * dailyWaterGoal).toInt()} ml';
+    return '';//'${(currentWaterIntake.value * dailyWaterGoal.value).toInt()} ml';
+  }
+
+  Future<void> fetchDailyWaterGoal() async{
+    print("inside water day details controller");
+    final response = await repository.fetchDailyWaterGoal();
+    print("response data ${response.data}");
+    if(response.isSuccess && response.data != null){
+      print("result is sucuess ${response.data}");
+      dailyWaterGoal.value = response.data!;
+    }
+    else{
+      print("result is failure ${response.error}");
+      HandleError.handleError(response.error);
+    }
   }
 }

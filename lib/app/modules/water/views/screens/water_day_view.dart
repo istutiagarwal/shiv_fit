@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
+import 'package:shiv_fit/app/data/values/images.dart';
 import 'package:shiv_fit/app/modules/water/controller/water_day_details_controller.dart';
+import 'package:shiv_fit/app/modules/water/views/cards/daily_water_logs_card.dart';
 import 'package:shiv_fit/app/modules/water/views/cards/water_consumption_chart_card.dart';
 import 'package:shiv_fit/app/modules/water/views/cards/water_day_header.dart';
 
@@ -15,12 +16,11 @@ class WaterDayView extends GetView<WaterDayDetailsController> {
         children: [
           WaterDayHeader(),
           WaterConsumptionChartCard(),
-          ElevatedButton(
-              onPressed: () {
-                controller.onAddWater(
-                    WaterLogRequestDto(volume: 250, containerType: "glass"));
-              },
-              child: const Text("Add water")),
+          DailyWaterLogsCard(
+            icon: Images.icShaker,
+            volume: "250ml",
+            timeStamp: "02:36 Pm",
+          )
         ],
       ),
     );

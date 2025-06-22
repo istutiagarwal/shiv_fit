@@ -18,4 +18,11 @@ class WaterLogRequestDto {
   }
 
   Map<String,dynamic> toJson() => {'volume' : volume ,'container' : containerType};
+
+  factory WaterLogRequestDto.fromJson(Map<String, dynamic> json) {
+    return WaterLogRequestDto(
+      volume: json['volume'],
+      containerType: json['container'],
+    );
+  }
 }

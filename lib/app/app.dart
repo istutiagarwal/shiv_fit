@@ -13,7 +13,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: AppBinding(),
-      initialRoute: Routes.home,
+      initialRoute: Routes.onboarding,
       getPages: AppPages.pages,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),

@@ -13,4 +13,5 @@ class ErrorMessages {
   static const notFound = 'Requested document not found.';
   static const invalidFormat = 'Invalid Format';
   static const typeMismatch = 'Type Mismatch';
+  static const documentNotFound = 'Document not found';
 }

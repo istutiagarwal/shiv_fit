@@ -5,4 +5,8 @@ class RepoResponse<T> {
   final T? data;
 
   RepoResponse({this.error, this.data});
+
+  bool get isSuccess => error == null;
+  bool get hasError => error != null;
+  String? get errorMessage => error?.message;
 }

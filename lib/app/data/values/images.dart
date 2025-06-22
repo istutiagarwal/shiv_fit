@@ -10,4 +10,5 @@ class Images {
   static const defaultImage = 'assets/images/water_glass.png';
   static const womenDrinkingWater = 'assets/images/women_drinking_water.png';
   static const streakEmoji = 'assets/images/burn.png';
+  static const womenDrinkingWaterOnboarding = 'assets/images/women_drinking_water_onboarding.png';
 }
