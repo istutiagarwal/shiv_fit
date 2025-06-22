@@ -23,8 +23,8 @@ class OnboardingRequestModel {
   });
 
   @override
-  String toString() =>
-      'OnboardingRequestModel(waterGoalLastUpdated : $waterGoalLastUpdated,'
+  String toString() => 'OnboardingRequestModel('
+      'waterGoalLastUpdated : $waterGoalLastUpdated,'
       'waterGoal : $waterGoal,'
       'selectedContainer : $selectedContainer,'
       'selectedContainerLastUpdated : $selectedContainerLastUpdated'
@@ -46,7 +46,8 @@ class OnboardingRequestModel {
     return OnboardingRequestModel(
       waterGoalLastUpdated: waterGoalLastUpdated ?? this.waterGoalLastUpdated,
       waterGoal: waterGoal ?? this.waterGoal,
-      selectedContainerLastUpdated: selectedContainerLastUpdated ?? this.selectedContainerLastUpdated,
+      selectedContainerLastUpdated:
+          selectedContainerLastUpdated ?? this.selectedContainerLastUpdated,
       selectedContainer: selectedContainer ?? this.selectedContainer,
     );
   }

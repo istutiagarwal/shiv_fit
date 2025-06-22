@@ -26,9 +26,17 @@ class _WaterConstants {
   final String timeToRefill = "Thirsty? Time to refill.";
   final String waterIntake = "Water Intake";
   final String waterIntakeGoal = "Water Intake Goal";
-  final String dailyWaterQuestion = "How much water do you want to drink each day?";
-  final String hydrationGoalDescription = "Setting a daily water intake goal is the first step towards a healthier you. "
+  final String dailyWaterQuestion =
+      "How much water do you want to drink each day?";
+  final String hydrationGoalDescription =
+      "Setting a daily water intake goal is the first step towards a healthier you. "
       "Choose a goal that challenges you but is also achievable. "
       "Remember, every drop counts.";
-  final String waterIntakeLabel = "What size of container do you use most often.";
+  final String waterIntakeLabel =
+      "What size of container do you use most often.";
+
+  //Hydration Reminder
+
+  final String hydrationReminder = "Hydration Reminder";
+  final String addHydrationReminder = "Add More Reminders";
 }
