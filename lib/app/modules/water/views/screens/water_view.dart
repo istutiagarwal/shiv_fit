@@ -24,16 +24,18 @@ class WaterView extends GetView<WaterDayDetailsController> {
           child: Column(
         children: [
           TimeRangeSelector(),
-          Obx(() {
-            switch (timeRangeController.selectedRange.value) {
-              case TimeRangeEnum.day:
-                return WaterDayView();
-              case TimeRangeEnum.month:
-                return const WaterMonthView();
-              case TimeRangeEnum.week:
-                return const WaterWeekView();
-            }
-          }),
+          Expanded(
+            child: Obx(() {
+              switch (timeRangeController.selectedRange.value) {
+                case TimeRangeEnum.day:
+                  return WaterDayView();
+                case TimeRangeEnum.month:
+                  return const WaterMonthView();
+                case TimeRangeEnum.week:
+                  return const WaterWeekView();
+              }
+            }),
+          ),
         ],
       )),
     );
