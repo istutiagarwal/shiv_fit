@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
-import 'package:shiv_fit/app/modules/home/views/home_view.dart';
+import 'package:shiv_fit/app/data/values/number.dart';
 import 'package:shiv_fit/app/modules/onboarding/controllers/onboarding_controller.dart';
 import 'package:shiv_fit/app/modules/onboarding/views/onboarding/bottom_sheets/custom_container_bottom_sheet.dart';
 import 'package:shiv_fit/app/routes/app_routes.dart';
@@ -13,7 +13,9 @@ import 'package:shiv_fit/widgets/buttons/bordered_choice_box.dart';
 import 'package:shiv_fit/widgets/buttons/primary_action_button.dart';
 
 class PreferredContainerCard extends GetView<OnboardingController> {
-  const PreferredContainerCard({super.key});
+
+
+  PreferredContainerCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,42 +50,80 @@ class PreferredContainerCard extends GetView<OnboardingController> {
                 width: AppDimens.dimens_150,
                 height: AppDimens.dimens_250,
               ),
-              Obx(() {
-                return GridView.count(
-                  crossAxisCount: 3,
-                  // 3 items per row
-                  shrinkWrap: true,
-                  // Only take up needed space
-                  physics: const NeverScrollableScrollPhysics(),
-                  // Avoid internal scrolling
-                  padding: const EdgeInsets.all(8),
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  children:
-                      List.generate(controller.waterLogActions.length, (index) {
-                    final tile = controller.waterLogActions[index];
-                    return BorderedChoiceBox(
-                      label: tile.label,
+              GridView.count(
+                crossAxisCount: Numbers.three,
+                // 3 items per row
+                shrinkWrap: true,
+                // Only take up needed space
+                physics: const NeverScrollableScrollPhysics(),
+                // Avoid internal scrolling
+                padding: const EdgeInsets.all(Numbers.eight),
+                crossAxisSpacing: Numbers.twelve.toDouble(),
+                mainAxisSpacing: Numbers.twelve.toDouble(),
+                children:
+                    List.generate(controller.waterLogActions.length, (index) {
+                  final tile = controller.waterLogActions[index];
+                  return Obx((){
+
+                    return OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: AppColors.transparent,
+                        foregroundColor: AppColors.transparent,
+                        disabledBackgroundColor: AppColors.grey,
+                        disabledForegroundColor: AppColors.transparent,
+                        padding: EdgeInsets.symmetric(vertical: AppDimens.dimens_14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppDimens.dimens_10),
+                        ),
+                        side:  BorderSide(
+                          color:  controller.isTileSelected(index)  ?AppColors.iceyBlue : AppColors.grey,
+                          width: AppDimens.dimens_1,
+                        ),
+                      ),
                       onPressed: () {
-                        if (index == 5) {
+                        if (index ==
+                            controller.waterLogActions.length - Numbers.one) {
+                          controller.toggleSelection(index);
                           WidgetsBinding.instance.addPostFrameCallback((_) {
                             showModalBottomSheet(
                               context: context,
-                              builder: (context) =>
-                                  CustomContainerBottomSheet(),
+                              builder: (context) => CustomContainerBottomSheet(),
                               isScrollControlled: true,
                             );
                           });
+                        } else {
+                          controller.toggleSelection(index);
                         }
                       },
-                      description: tile.description,
-                      icon: tile.icon!,
-                      isSelected:
-                          controller.selectedContainerLabel.value == tile.label,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (tile.icon != null) ...[
+                            Image.asset(
+                              tile.icon!,
+                              width: AppDimens.dimens_50,
+                              height: AppDimens.dimens_40,
+                            ),
+                            SizedBox(width: AppDimens.dimens_8),
+                          ],
+                          Text(
+                            tile.label,
+                            style: Styles.blackBold(
+                                AppDimens.dimens_12, AppColors.black),
+                          ),
+                          if (tile.description != null) ...[
+                            Text(
+                              tile.description!,
+                              style: Styles.blackBold(
+                                  AppDimens.dimens_8, AppColors.black),
+                            ),
+                          ],
+                        ],
+                      ),
                     );
-                  }).toList(),
-                );
-              }),
+                  });
+                }).toList(),
+              ),
               PrimaryActionButton(
                 label: AppConstant.next,
                 onPressed: () {

@@ -1,83 +1,42 @@
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/base/base_controller.dart';
+import 'package:shiv_fit/app/data/enums/enums/water_goal_enum.dart';
+import 'package:shiv_fit/app/data/enums/water/water_container_enum.dart';
+import 'package:shiv_fit/app/data/models/dto/handle_error.dart';
+import 'package:shiv_fit/app/data/models/dto/handle_success.dart';
 import 'package:shiv_fit/app/data/models/dto/tile_action.dart';
 import 'package:shiv_fit/app/data/repository/onboarding_repository.dart';
-import 'package:shiv_fit/app/data/values/images.dart';
-import 'package:shiv_fit/app/theme/app_colors.dart';
+import 'package:shiv_fit/app/data/values/app_constant.dart';
 
 class OnboardingController extends BaseController<OnboardingRepository> {
-  final Rx<String> selectedContainerLabel  = ''.obs;
-   List<TileAction>  get tileActions => [
-    TileAction(label: "1"),//, onTap: () => print("Open Water Tracker")),
-    TileAction(label: "1.5"),// onTap: () => print("Open Mood Tracker")),
-    TileAction(label: "2"),// onTap: () => print("Open Step Counter")),
-    TileAction(label: "2.5"),// onTap: () => print("Open Sleep Tracker")),
-    TileAction(label: "3"),// onTap: () => print("Open Food Log")),
-    TileAction(label: "Custom")//, onTap: () => print("Open Workout Log")),
-  ];
+  final RxSet<int> selectedIndexes = <int>{}.obs;
 
-   List<TileAction> get  waterLogActions => [
-    TileAction(
-      label: "glass",
-      description: "500-1000ml",
-      icon: Images.icWaterGlass,
-      //onTap: () { selectedContainerLabel.value = "glass"; print("selection glass ${selectedContainerLabel.value = "glass"}");},
-    ),
-    TileAction(
-      label: "hydro flask",
-      description: "500-1000ml",
-      icon: Images.icHydroFlask,
-      //onTap: () { selectedContainerLabel.value = "hydro flask"; print("selection");},
-    ),
-    TileAction(
-      label: "shaker",
-      description: "500-1000ml",
-      icon: Images.icShaker,
-     // onTap: () { selectedContainerLabel.value ="shaker"; print("selection");},
-    ),
-    TileAction(
-      label: "tumbler",
-      description: "500-1000ml",
-      icon: Images.icTumbler,
-      //onTap: () { selectedContainerLabel.value = "tumbler"; print("selection");},
-    ),
-    TileAction(
-      label: "water bottle",
-      description: "500-1000ml",
-      icon: Images.icWaterBottle,
-      //onTap: () { selectedContainerLabel.value = "water bottle"; print("selection");},
-    ),
-    TileAction(
-      label: "custom",
-      description: "500-1000ml",
-      icon: Images.womenDrinkingWaterOnboarding,
-      //onTap: () { selectedContainerLabel.value = "custom"; print("selection");
-  )
-  ];
+  List<TileAction> get tileActions =>
+      WaterGoalEnum.values.map((e) => TileAction(label: e.label)).toList();
 
-  Future<void> handleWaterGoalClick(String selectedWaterGoal) async{
-    print("inside onbaording controller");
-    final response = await  repository.saveWaterGoal(selectedWaterGoal);
-    print("response ${response}");
-    if(response.isSuccess){
-      print("success data saved");
-      Get.snackbar(
-        'Success',
-        'Weight goal saved successfully 🎯',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.iceyBlue,
-        colorText: AppColors.white,
-      );
+  List<TileAction> get waterLogActions => WaterContainerType.values
+      .map((e) =>
+          TileAction(label: e.label, description: e.description, icon: e.icon))
+      .toList();
+
+  Future<void> handleWaterGoalClick(String selectedWaterGoal) async {
+    final response = await repository.saveWaterGoal(selectedWaterGoal);
+    if (response.isSuccess) {
+      HandleSuccess.showSuccess(AppConstant.water.weightGoalSuccess);
+    } else {
+      HandleError.handleError(response.error);
     }
-    else{
-      print("failure data not saved");
-      Get.snackbar(
-        'Error',
-        response.error?.message ?? 'Something went wrong 😕',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.iceyBlue,
-        colorText: AppColors.white,
-      );
+  }
+
+  void toggleSelection(int index) {
+    if (selectedIndexes.contains(index)) {
+      selectedIndexes.remove(index);
+    } else {
+      selectedIndexes.add(index);
     }
+  }
+
+  bool isTileSelected(int index) {
+    return selectedIndexes.contains(index);
   }
 }

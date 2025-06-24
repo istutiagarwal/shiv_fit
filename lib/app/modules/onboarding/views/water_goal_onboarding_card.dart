@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
+import 'package:shiv_fit/app/data/values/number.dart';
 import 'package:shiv_fit/app/modules/onboarding/controllers/onboarding_controller.dart';
 import 'package:shiv_fit/app/modules/onboarding/views/onboarding/bottom_sheets/custom_water_intake_goal_bottom_sheet.dart';
 import 'package:shiv_fit/app/modules/onboarding/views/preferred_container_card.dart';
@@ -12,7 +13,10 @@ import 'package:shiv_fit/widgets/buttons/bordered_choice_box.dart';
 import 'package:shiv_fit/widgets/buttons/primary_action_button.dart';
 
 class WaterGoalOnboardingCard extends GetView<OnboardingController> {
-  const WaterGoalOnboardingCard({super.key});
+  final BorderedChoiceBoxController borderedChoiceBoxController =
+      Get.find<BorderedChoiceBoxController>();
+
+  WaterGoalOnboardingCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,41 +52,40 @@ class WaterGoalOnboardingCard extends GetView<OnboardingController> {
                 height: AppDimens.dimens_250,
               ),
               GridView.count(
-                crossAxisCount: 3,
+                crossAxisCount: Numbers.three,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(8),
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
+                padding: const EdgeInsets.all(Numbers.eight),
+                crossAxisSpacing: Numbers.twelve.toDouble(),
+                mainAxisSpacing: Numbers.twelve.toDouble(),
                 children: List.generate(controller.tileActions.length, (index) {
                   final tile = controller.tileActions[index];
                   return BorderedChoiceBox(
                     label: tile.label,
                     onPressed: () {
-                      if (index == 5) {
+                      if (index ==
+                          controller.tileActions.length - Numbers.one) {
+                        borderedChoiceBoxController.selectedIndex.value = index;
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           showModalBottomSheet(
                             context: context,
                             builder: (context) =>
-                                CustomWaterIntakeGoalBottomSheet(),
+                                const CustomWaterIntakeGoalBottomSheet(),
                             isScrollControlled: true,
                           );
                         });
+                      } else {
+                        borderedChoiceBoxController.selectedIndex.value = index;
                       }
-                      else{
-                        print("inside on press ${tile.label}");
-                        controller.handleWaterGoalClick(tile.label);
-                      }
-                      {}
-                      ;
                     },
+                    index: index,
                   );
                 }).toList(),
               ),
               PrimaryActionButton(
                   label: AppConstant.next,
                   onPressed: () {
-                    Get.to(() => PreferredContainerCard());
+                      Get.to(() => PreferredContainerCard());
                   })
             ],
           ),

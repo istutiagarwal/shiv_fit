@@ -46,4 +46,28 @@ class _WaterConstants {
   final String volume = "Volume";
   final String usage = "Usage";
   final String count = "Count";
+
+  // water goal
+  final String oneLitre = "1 L";
+  final String onePointFiveLitre = "1.5 L";
+  final String twoLitre = "2 L";
+  final String twoPointFiveLitre = "2.5L";
+  final String threeLitre = "3 L";
+  final String custom = "custom";
+
+  //onboarding
+  final String weightGoalSuccess = 'Weight goal saved successfully 🎯';
+  final String glass = "Glass";
+  final String hydroFlask = "Hydro Flask";
+  final String shaker = "Shaker";
+  final String stanley = "Stanley cup";
+  final String tumbler = "Tumbler";
+  final String waterBottle = "Water bottle";
+  final String glassVolume = "250ml";
+  final String hydroFlaskVolume = "550ml";
+  final String shakerVolume = "700ml";
+  final String stanleyVolume = "Stanley cup";
+  final String tumblerVolume = "500ml";
+  final String waterBottleVolume = "1L";
+
 }
