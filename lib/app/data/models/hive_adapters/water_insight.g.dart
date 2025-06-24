@@ -17,16 +17,35 @@ class WaterInsightAdapter extends TypeAdapter<WaterInsight> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return WaterInsight(
-      waterLog: fields[1] as WaterLogRequestDto,
+      waterLog: fields[0] as WaterLogRequestDto,
+      waterWeatherRequestModel: fields[6] as WaterWeatherRequestModel,
+      waterSuggestionRequestModel: fields[5] as WaterSuggestionRequestModel,
+      waterStreakRequestModel: fields[4] as WaterStreakRequestModel,
+      waterMoodRequestModel: fields[3] as WaterMoodRequestModel,
+      hydrationReminderRequestModel: fields[2] as HydrationReminderRequestModel,
+      containerStatsResponseModel:
+          fields[1] as WaterContainerStatsResponseModel,
     );
   }
 
   @override
   void write(BinaryWriter writer, WaterInsight obj) {
     writer
+      ..writeByte(7)
+      ..writeByte(0)
+      ..write(obj.waterLog)
       ..writeByte(1)
-      ..writeByte(1)
-      ..write(obj.waterLog);
+      ..write(obj.containerStatsResponseModel)
+      ..writeByte(2)
+      ..write(obj.hydrationReminderRequestModel)
+      ..writeByte(3)
+      ..write(obj.waterMoodRequestModel)
+      ..writeByte(4)
+      ..write(obj.waterStreakRequestModel)
+      ..writeByte(5)
+      ..write(obj.waterSuggestionRequestModel)
+      ..writeByte(6)
+      ..write(obj.waterWeatherRequestModel);
   }
 
   @override

@@ -9,17 +9,6 @@ class SwipeableMonthView extends GetView<MonthCalenderController> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onHorizontalDragEnd: (details) {
-          if (details.primaryVelocity! < Numbers.zero) {
-            controller.getNextMonth(controller.selectedDate.value);
-          } else if (details.primaryVelocity! > Numbers.zero) {
-            controller.getPreviousMonth(controller.selectedDate.value);
-          }
-        },
-        child: CalendarGrid(),
-      ),
-    );
+    return CalendarGrid();
   }
 }

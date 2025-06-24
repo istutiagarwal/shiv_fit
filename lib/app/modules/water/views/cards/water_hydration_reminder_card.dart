@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
+import 'package:shiv_fit/app/modules/water/controller/water_controller.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
 import 'package:shiv_fit/widgets/charts/custom_circular_progress_indicator.dart';
 
-class WaterHydrationReminderCard extends StatelessWidget {
+class WaterHydrationReminderCard extends GetView<WaterController> {
   const WaterHydrationReminderCard({super.key});
 
   @override
@@ -110,9 +112,11 @@ class WaterHydrationReminderCard extends StatelessWidget {
               SizedBox(
                 width: AppDimens.dimens_8,
               ),
-              Text("Missed reminder : 2:30 PM",
-                  style:
-                      Styles.blackBold(AppDimens.dimens_16, AppColors.black)),
+              Obx((){
+                return Text("Missed reminder : ${controller.selectedInsight.value?.hydrationReminderRequestModel.remindersMissed}",
+                    style:
+                    Styles.blackBold(AppDimens.dimens_16, AppColors.black));
+              }),
             ],
           ),
 

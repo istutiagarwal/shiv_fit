@@ -1,223 +1,150 @@
+import 'package:get/get.dart';
 import 'package:shiv_fit/app/base/base_controller.dart';
-
+import 'package:shiv_fit/app/data/models/request/water_hydration_reminder_request_model.dart';
+import 'package:shiv_fit/app/data/models/request/water_insight.dart';
+import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
+import 'package:shiv_fit/app/data/models/request/water_mood_request_model.dart';
+import 'package:shiv_fit/app/data/models/request/water_streak_request_model.dart';
+import 'package:shiv_fit/app/data/models/request/water_suggestion_request_model.dart';
+import 'package:shiv_fit/app/data/models/request/water_weather_request_model.dart';
+import 'package:shiv_fit/app/data/models/response/water_container_stats_response_model.dart';
 
 class WaterController extends BaseController {
-  // final RxMap<String, ContainerItem> containerData =
-  //     <String, ContainerItem>{}.obs;
-  // final isEditButtonClicked = false.obs;
-  // final isTextFieldVisible = false.obs;
-  // RxList listOfContainer = [].obs;
-  // final Map<String, ContainerItem> defaultContainerData = {
-  //   for (var type in WaterContainerType.values)
-  //     type.label: ContainerItem(
-  //       image: type.image,
-  //       volume: type.defaultVolume,
-  //       isUpdated: false,
-  //       isSelected: false,
-  //     )
-  // };
+  final Map<DateTime, WaterInsight> mockWeeklyData = {
+    DateTime(2025, 6, 9): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 250, containerType: "Glass"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Sunny", currentTemperature: 32, humidity: 40),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Carry a water bottle.", suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: '1', streakStatus: '2', maxStreak: 4),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Energetic", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 2),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "glass"),
+    ),
+    DateTime(2025, 6, 1): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 300, containerType: "Bottle"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Cloudy", currentTemperature: 28, humidity: 55),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Drink warm water in the morning.",
+          suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: '2', streakStatus: '5', maxStreak: 10),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Calm", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 10),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "stanley"),
+    ),
+    DateTime(2025, 5, 1): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 400, containerType: "Cup"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Rainy", currentTemperature: 24, humidity: 70),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Limit caffeine, drink more water.",
+          suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: '3', streakStatus: '6', maxStreak: 67),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Relaxed", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 2),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "bottle"),
+    ),
+    DateTime(2025, 7, 1): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 500, containerType: "Mug"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Sunny", currentTemperature: 33, humidity: 45),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Refill your bottle after lunch.",
+          suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: "tuesday", streakStatus: '3', maxStreak: 89),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Focused", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 2),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "glass"),
+    ),
+    DateTime(2025, 8, 1): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 600, containerType: "Bottle"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Cloudy", currentTemperature: 30, humidity: 60),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Track your sips!", suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: '5', streakStatus: '200', maxStreak: 500),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Happy", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 22),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "shaker"),
+    ),
+    DateTime(2025, 4, 1): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 700, containerType: "Glass"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Rainy", currentTemperature: 25, humidity: 75),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Hydrate after your walk.", suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: '6', streakStatus: '56', maxStreak: 200),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Lazy", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 12),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "glass"),
+    ),
+    DateTime(2025, 3, 1): WaterInsight(
+      waterLog: WaterLogRequestDto(volume: 800, containerType: "Jug"),
+      waterWeatherRequestModel: WaterWeatherRequestModel(
+          weatherCondition: "Sunny", currentTemperature: 35, humidity: 50),
+      waterSuggestionRequestModel: WaterSuggestionRequestModel(
+          motivationalNudge: "Don’t wait till you’re thirsty.",
+          suggestionText: ''),
+      waterStreakRequestModel: WaterStreakRequestModel(
+          streakBreakdown: 'wednessay', streakStatus: '20', maxStreak: 100),
+      waterMoodRequestModel:
+          WaterMoodRequestModel(moodToday: "Motivated", dateLabel: ''),
+      hydrationReminderRequestModel:
+          HydrationReminderRequestModel(remindersMissed: 10),
+      containerStatsResponseModel:
+          WaterContainerStatsResponseModel(mostUsedContainer: "shaker"),
+    ),
+  };
+  final Rx<WaterInsight?> selectedInsight = Rx<WaterInsight?>(null);
 
+  DateTime now = DateTime.now();
+  late Rx<DateTime> selectedDate;
 
-  onInit() {
+  DateTime getTodayDate() => DateTime(now.year, now.month, now.day);
+
+  @override
+  void onInit() {
     super.onInit();
-    //loadContainerDataFromStorage();
+    selectedDate = Rx<DateTime>(getTodayDate());
+    loadDataForDate(selectedDate.value);
   }
 
-  // void handleContainerSelection(int index) {
-  //   _clearAllSelections();
-  //   _markContainerAsSelected(index);
-  //  // _saveSelection();
-  //   }
+  void loadDataForDate(DateTime date) {
+    selectedDate.value = date;
 
-  // void _clearAllSelections() {
-  //   containerData.updateAll((key, item) => ContainerItem(
-  //     image: item.image,
-  //     volume: item.volume,
-  //     isSelected: false,
-  //     isUpdated: item.isUpdated,
-  //   ));
-  // }
+    // Normalize date to remove time for accurate key match
+    final normalizedDate = DateTime(date.year, date.month, date.day);
 
-  // void _markContainerAsSelected(int index) {
-  //   final key = containerData.keys.elementAt(index);
-  //   final selectedItem = containerData[key];
-  //
-  //   if (selectedItem != null) {
-  //     containerData[key] = ContainerItem(
-  //       image: selectedItem.image,
-  //       volume: selectedItem.volume,
-  //       isSelected: true,
-  //       isUpdated: selectedItem.isUpdated,
-  //     );
-  //   }
-  // }
-
-  // void _saveSelection() =>
-  //   saveContainerDataToStorage();
-
-
-  // onEditButtonClick() {
-  //   isEditButtonClicked.value = true;
-  //   isTextFieldVisible.value = true;
-  //   }
-
-  // void _updateContainerItem({
-  //   required String key,
-  //   required ContainerItem Function(ContainerItem item) updatedFields,
-  // }) {
-  //   final item = containerData[key];
-  //   if (item != null) {
-  //     containerData[key] = updatedFields(item);
-  //     saveContainerDataToStorage();
-  //     //print("Updated containerData[$key]: ${containerData[key]}");
-  //   } else {
-  //     print("No item found for key: $key");
-  //   }
-  // }
-
-
-  // void updateIsUpdatedValue(String key) {
-  //   _updateContainerItem(
-  //     key: key,
-  //     updatedFields: (item) => ContainerItem(
-  //       image: item.image,
-  //       volume: item.volume,
-  //       isSelected: item.isSelected,
-  //       isUpdated: true,
-  //     ),
-  //   );
-  // }
-  // void updateContainerVolume(String key, String newVolume) {
-  //   _updateContainerItem(
-  //     key: key,
-  //     updatedFields: (item) => ContainerItem(
-  //       image: item.image,
-  //       volume: newVolume,
-  //       isSelected: item.isSelected,
-  //       isUpdated: item.isUpdated,
-  //     ),
-  //   );
-
-    //isTextFieldVisible.value = false;
+    if (mockWeeklyData.containsKey(normalizedDate)) {
+      selectedInsight.value = mockWeeklyData[normalizedDate];
+    } else {
+      selectedInsight.value = null; // No data for this day
+    }
   }
-
-
-  // String get updatedContainerVolume {
-  //   final selectedItem = containerData.values.firstWhere(
-  //         (item) => item.isSelected,
-  //     orElse: () => ContainerItem(image: '', volume: '', isSelected: false, isUpdated: false),
-  //   );
-  //   return selectedItem.volume;
-  // }
-
-  // void saveContainerDataToStorage() =>
-  //   Storage.saveContainerData(containerData);
-  //
-  //
-  // void loadContainerDataFromStorage() {
-  //   final loaded = Storage.loadContainerData();
-  //
-  //   if (loaded.isEmpty) {
-  //     containerData.value = defaultContainerData;
-  //     Storage.saveContainerData(defaultContainerData); // Store it for next time
-  //   } else {
-  //     containerData.value = loaded;
-  //   }
-  // }
-
-  // onContainerSelection(int index) =>
-  //   handleContainerSelection(index);
-  //
-  //
-  // String getImage(int index) {
-  //   final key = containerData.keys.elementAt(index);
-  //   final item = containerData[key];
-  //
-  //   return item?.image ??  Images.defaultImage;
-  // }
-
-  // String getContainerType(int index) =>
-  //    containerData.keys.elementAt(index) ?? 'water';
-  //
-  //
-  // String getContainerVolume(int index) {
-  //   final key = containerData.keys.elementAt(index);
-  //   return containerData[key]?.volume ?? '240';
-  // }
-  //
-  // String getContainerVolumeAfterSelection(){
-  //   if(isEditButtonClicked.value) return updatedContainerVolume;
-  //   else return getSelectedContainerVolume();
-  // }
-  // bool isSelected() =>
-  //    containerData.values.any((item) => item.isSelected);
-
-
-  // String getSelectedContainerKey() {
-  //   return containerData.entries
-  //       .firstWhere((entry) => entry.value.isSelected, orElse: () => MapEntry('', ContainerItem(
-  //     image: '',
-  //     volume: '',
-  //     isSelected: false,
-  //     isUpdated: false,
-  //   )))
-  //       .key;
-  // }
-
-  // String getSelectedImage() {
-  //   // if (isSelected()) {
-  //   //   //final selectedItem = containerData.values.firstWhere((item) => item.isSelected);
-  //   //   //return selectedItem.image;
-  //   // }
-  //   return ''; // fallback if none selected
-  // }
-
-  // String getSelectedContainerType() {
-  //   for (final entry in containerData.entries) {
-  //     if (entry.value.isSelected) {
-  //       return entry.key;
-  //     }
-  //   }
-  //   return '';
-  // }
-  // String getSelectedContainerVolume() {
-  //   for (final entry in containerData.entries) {
-  //     if (entry.value.isSelected) {
-  //       return entry.value.volume;
-  //     }
-  //   }
-  //   return ''; // fallback if none selected
-  // }
-
-  // bool
-  // isSelectedContainerUpdated() {
-  //   final selectedKey = getSelectedContainerKey();
-  //   if (selectedKey.isNotEmpty && containerData.containsKey(selectedKey)) {
-  //     return containerData[selectedKey]!.isUpdated;
-  //   }
-  //   return false;
-  // }
-
-
-  // bool isUpdated(int index){
-  //   final key = containerData.keys.elementAt(index);
-  //   return containerData[key]?.isUpdated == true;
-  // }
-
-  // void onDoneClick(){
-  //   final selectedEntry = containerData.entries.firstWhere(
-  //         (entry) => entry.value.isSelected,
-  //   );
-  //
-  //   selectedEntry.value.isSelected = false;
-  //   saveContainerDataToStorage();
-  //   }
-  // void onChangeContainerClick(){
-  //   final selectedEntry = containerData.entries.firstWhere(
-  //         (entry) => entry.value.isSelected,
-  //   );
-  //
-  //   selectedEntry.value.isSelected = false;
-  //   saveContainerDataToStorage();
-  // }
-  //}
+}

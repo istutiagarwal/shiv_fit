@@ -10,15 +10,6 @@ class SwipeableWeekView extends GetView<WeekCalenderController> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity! < AppDimens.dimens_0) {
-          controller.onRightGesture(controller.selectedDate.value);
-        } else if (details.primaryVelocity! > AppDimens.dimens_0) {
-          controller.onLeftGesture(controller.selectedDate.value);
-        }
-      },
-      child: WeekDateRow(),
-    );
+    return WeekDateRow();
   }
 }

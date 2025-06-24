@@ -11,6 +11,8 @@ class CalendarGrid extends GetView<MonthCalenderController> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         itemCount: Numbers.fourtyNine,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: Numbers.seven,
