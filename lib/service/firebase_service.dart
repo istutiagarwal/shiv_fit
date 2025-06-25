@@ -48,7 +48,7 @@ class FirebaseService {
       print("${ _firestore.collection(collectionPath).doc(docId).set(data)}");
       return DataWrapper<void>(data: null);
     } catch (e) {
-      print("inside catch");
+      print("inside catch $e");
       final exception = ExceptionHandler.handle(e);
       return DataWrapper<void>(error: exception.message);
     }

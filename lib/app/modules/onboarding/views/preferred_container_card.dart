@@ -127,6 +127,7 @@ class PreferredContainerCard extends GetView<OnboardingController> {
               PrimaryActionButton(
                 label: AppConstant.next,
                 onPressed: () {
+                 controller.handleWaterContainerSelection();
                   Get.toNamed(Routes.home);
                 },
                 isDisabled: false,

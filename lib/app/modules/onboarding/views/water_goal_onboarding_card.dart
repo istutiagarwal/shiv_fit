@@ -70,12 +70,13 @@ class WaterGoalOnboardingCard extends GetView<OnboardingController> {
                           showModalBottomSheet(
                             context: context,
                             builder: (context) =>
-                                const CustomWaterIntakeGoalBottomSheet(),
+                                 CustomWaterIntakeGoalBottomSheet(),
                             isScrollControlled: true,
                           );
                         });
                       } else {
                         borderedChoiceBoxController.selectedIndex.value = index;
+                        controller.handleWaterGoalClick(tile.label);
                       }
                     },
                     index: index,

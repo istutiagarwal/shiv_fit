@@ -1,5 +1,6 @@
 import 'package:shiv_fit/app/base/base_repository.dart';
 import 'package:shiv_fit/app/data/models/dto/repo_response.dart';
+import 'package:shiv_fit/app/data/models/request/container_usage_request_model.dart';
 import 'package:shiv_fit/app/data/models/request/onboarding_request_model.dart';
 import 'package:shiv_fit/app/data/repository/onboarding_repository.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
@@ -36,6 +37,34 @@ print("success");
       return RepoResponse(error: ExceptionHandler.handle(e));
     }
 
+  }
+
+  @override
+  Future saveSelectedContainers(List<ContainerUsageRequestModel> selectedContainersList) async {
+    print("inside repo saveSelectedContainers");
+    try{
+      print("inside try");
+      await OnboardingHiveService.saveSelectedContainers(selectedContainersList);
+      final result = await firebaseService.set(
+        collectionPath: CollectionPaths.onboardingData,
+        data: {
+          'selectedContainer': selectedContainersList.map((e) => e.toJson()).toList(),
+          'selectedContainerLastUpdated': DateTime.now().toIso8601String(),
+        }, docId: AppConstant.devUserId,
+      );
+
+      if (result.error != null) {
+        print("error");
+        return RepoResponse(
+          error: APIException(message: result.error.toString()),
+        );
+      }
+      print("success");
+      return RepoResponse();
+    } catch (e) {
+      print("catch $e");
+      return RepoResponse(error: ExceptionHandler.handle(e));
+    }
   }
 
 }

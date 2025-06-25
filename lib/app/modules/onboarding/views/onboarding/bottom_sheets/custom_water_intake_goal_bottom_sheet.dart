@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shiv_fit/app/data/values/app_constant.dart';
+import 'package:shiv_fit/app/modules/onboarding/controllers/onboarding_controller.dart';
+import 'package:shiv_fit/app/modules/onboarding/views/preferred_container_card.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
+import 'package:shiv_fit/service/navigation_helper.dart';
 import 'package:shiv_fit/widgets/buttons/primary_action_button.dart';
+import 'package:shiv_fit/widgets/text_field/custom_text_field.dart';
 
-class CustomWaterIntakeGoalBottomSheet extends StatelessWidget {
-  const CustomWaterIntakeGoalBottomSheet({super.key});
+class CustomWaterIntakeGoalBottomSheet extends GetView<OnboardingController> {
+  final TextEditingController textEditingController = TextEditingController();
+
+  CustomWaterIntakeGoalBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class CustomWaterIntakeGoalBottomSheet extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Set Daily Water goal",
+                  AppConstant.water.setDailyWaterGoal,
                   style: Styles.blackBold(
                     AppDimens.dimens_20,
                     AppColors.black,
@@ -35,9 +43,12 @@ class CustomWaterIntakeGoalBottomSheet extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: Icon(
-                  Icons.close,
+                child: IconButton(
                   color: AppColors.red,
+                  onPressed: () {
+                    NavigationHelper.closeBottomSheet(context);
+                  },
+                  icon: const Icon(Icons.close),
                 ),
               ),
             ],
@@ -46,47 +57,30 @@ class CustomWaterIntakeGoalBottomSheet extends StatelessWidget {
             height: AppDimens.dimens_20,
           ),
           Text(
-            "Your sip story starts here",
+            AppConstant.water.waterGoalBSTitle,
             style: Styles.blackBold(AppDimens.dimens_18, AppColors.black),
           ),
           Text(
-            "set your daily goal!",
+            AppConstant.water.waterGoalBSDescription,
             style: Styles.blackBold(AppDimens.dimens_16, AppColors.black),
           ),
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          TextField(
-              decoration: InputDecoration(
-                hint: Text("Daily water goal"),
-                disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.grey,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Colors.grey,
-                    width: 1.5,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.iceyBlue,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                suffixText: "litres",
-              ),
-          ),
+          CustomTextField(
+              textEditingController: textEditingController,
+              label: AppConstant.water.setDailyWaterGoal,
+              suffixText: AppConstant.water.litres),
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          PrimaryActionButton(label: "Save", onPressed: () {}),
+          PrimaryActionButton(
+              label: AppConstant.water.save,
+              onPressed: () {
+                controller.handleWaterGoalClick(textEditingController.text);
+                NavigationHelper.closeBottomSheet(context);
+                Get.to(() => PreferredContainerCard());
+              }),
           SizedBox(
             height: AppDimens.dimens_20,
           ),

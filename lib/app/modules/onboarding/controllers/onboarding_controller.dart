@@ -5,11 +5,14 @@ import 'package:shiv_fit/app/data/enums/water/water_container_enum.dart';
 import 'package:shiv_fit/app/data/models/dto/handle_error.dart';
 import 'package:shiv_fit/app/data/models/dto/handle_success.dart';
 import 'package:shiv_fit/app/data/models/dto/tile_action.dart';
+import 'package:shiv_fit/app/data/models/request/container_usage_request_model.dart';
 import 'package:shiv_fit/app/data/repository/onboarding_repository.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 
 class OnboardingController extends BaseController<OnboardingRepository> {
   final RxSet<int> selectedIndexes = <int>{}.obs;
+  ContainerUsageRequestModel customContainer =
+      ContainerUsageRequestModel();
 
   List<TileAction> get tileActions =>
       WaterGoalEnum.values.map((e) => TileAction(label: e.label)).toList();
@@ -28,6 +31,31 @@ class OnboardingController extends BaseController<OnboardingRepository> {
     }
   }
 
+  Future<void> handleWaterContainerSelection() async {
+    List<ContainerUsageRequestModel> chosenContainers;
+    print("custom container $customContainer");
+    print("selected container $_selectedContainers");
+    if (customContainer.containerName!=null && customContainer.volume != null && customContainer.containerName!.trim().isNotEmpty &&
+        customContainer.volume!.trim().isNotEmpty) {
+      chosenContainers = [..._selectedContainers, customContainer];
+      print("chosen containers inside if $chosenContainers");
+
+    }else {
+      chosenContainers = _selectedContainers;
+      print("chosen containers inside else $chosenContainers");
+
+    }
+    print("chosen containers $chosenContainers");
+   final response = await repository.saveSelectedContainers(chosenContainers);
+    if (response.isSuccess) {
+      print("inside success controller");
+      HandleSuccess.showSuccess(AppConstant.water.waterContainerSuccess);
+    } else {
+      print("inside error controller");
+      HandleError.handleError(response.error);
+    }
+  }
+
   void toggleSelection(int index) {
     if (selectedIndexes.contains(index)) {
       selectedIndexes.remove(index);
@@ -39,4 +67,18 @@ class OnboardingController extends BaseController<OnboardingRepository> {
   bool isTileSelected(int index) {
     return selectedIndexes.contains(index);
   }
+
+  List<ContainerUsageRequestModel> get _selectedContainers {
+    return selectedIndexes
+        .where((i) => waterLogActions[i].label.toLowerCase() != AppConstant.water.custom)
+        .map((i) {
+      final action = waterLogActions[i];
+      return ContainerUsageRequestModel(
+        containerName: action.label,
+        volume: action.description ?? '',
+      );
+    }).toList();
+  }
+
+
 }

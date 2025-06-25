@@ -34,6 +34,8 @@ class _WaterConstants {
       "Remember, every drop counts.";
   final String waterIntakeLabel =
       "What size of container do you use most often.";
+  final String litres = "litres";
+  final String save = "Save";
 
   //Hydration Reminder
 
@@ -57,6 +59,7 @@ class _WaterConstants {
 
   //onboarding
   final String weightGoalSuccess = 'Weight goal saved successfully 🎯';
+  final String waterContainerSuccess = "Water containers have been successfully saved";
   final String glass = "Glass";
   final String hydroFlask = "Hydro Flask";
   final String shaker = "Shaker";
@@ -69,5 +72,12 @@ class _WaterConstants {
   final String stanleyVolume = "Stanley cup";
   final String tumblerVolume = "500ml";
   final String waterBottleVolume = "1L";
+
+  // custom water intake
+final String setDailyWaterGoal = "Set Daily Water goal";
+final String waterGoalBSTitle = "Your sip story starts here";
+final String waterGoalBSDescription = "Set your daily goal!";
+final String customContainer = "Custom Container";
+final String addContainer = "Add container";
 
 }

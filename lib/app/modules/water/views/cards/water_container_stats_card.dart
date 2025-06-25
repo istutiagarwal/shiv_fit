@@ -73,7 +73,7 @@ class WaterContainerStatsCard extends GetView<WaterDayDetailsController> {
                       child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            container.containerName,
+                            container.containerName!,
                           )),
                     ),
 
@@ -81,14 +81,14 @@ class WaterContainerStatsCard extends GetView<WaterDayDetailsController> {
                     Expanded(
                       child: Align(
                           alignment: Alignment.center,
-                          child: Text(container.percentageUsed)),
+                          child: Text(container.percentageUsed!)),
                     ),
 
                     // 3. Total volume
                     Expanded(
                       child: Align(
                           alignment: Alignment.center,
-                          child: Text(container.volume)),
+                          child: Text(container.volume!)),
                     ),
 
                     // 4. Count

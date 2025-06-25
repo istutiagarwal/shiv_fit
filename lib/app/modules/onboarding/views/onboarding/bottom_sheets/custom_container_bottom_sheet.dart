@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shiv_fit/app/data/models/request/container_usage_request_model.dart';
+import 'package:shiv_fit/app/data/values/app_constant.dart';
+import 'package:shiv_fit/app/modules/onboarding/controllers/onboarding_controller.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
 import 'package:shiv_fit/widgets/buttons/primary_action_button.dart';
+import 'package:shiv_fit/widgets/text_field/custom_text_field.dart';
 
-class CustomContainerBottomSheet extends StatelessWidget {
-  const CustomContainerBottomSheet({super.key});
+class CustomContainerBottomSheet extends GetView<OnboardingController> {
+  final TextEditingController containerController = TextEditingController();
+  final TextEditingController volumeController = TextEditingController();
+
+  CustomContainerBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class CustomContainerBottomSheet extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Add container",
+                  AppConstant.water.addContainer,
                   style: Styles.blackBold(
                     AppDimens.dimens_20,
                     AppColors.black,
@@ -46,69 +54,35 @@ class CustomContainerBottomSheet extends StatelessWidget {
             height: AppDimens.dimens_20,
           ),
           Text(
-            "Custom Container",
+            AppConstant.water.customContainer,
             style: Styles.blackBold(AppDimens.dimens_18, AppColors.black),
           ),
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          TextField(
-              decoration: InputDecoration(
-            hint: Text("Container Type"),
-            disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.grey,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.grey,
-                width: 1.5,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.iceyBlue,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-          )),
+          CustomTextField(
+              textEditingController: containerController,
+              label: AppConstant.water.container,
+              suffixText: ''),
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          TextField(
-              decoration: InputDecoration(
-            hint: Text("Volume"),
-            disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.grey,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.grey,
-                width: 1.5,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.iceyBlue,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-          )),
+          CustomTextField(
+              textEditingController: volumeController,
+              label: AppConstant.water.volume,
+              suffixText: AppConstant.water.litres),
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          PrimaryActionButton(label: "Save", onPressed: () {}),
+          PrimaryActionButton(
+              label: AppConstant.water.save,
+              onPressed: () {
+                controller.customContainer = ContainerUsageRequestModel(
+                  containerName: containerController.text,
+                  volume: volumeController.text,
+                );
+                controller.handleWaterContainerSelection();
+              }),
           SizedBox(
             height: AppDimens.dimens_20,
           ),

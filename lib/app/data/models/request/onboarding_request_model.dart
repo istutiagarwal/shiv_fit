@@ -2,8 +2,10 @@ import 'package:hive/hive.dart';
 import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
 import 'package:shiv_fit/utils/hive_type_ids.dart';
 
-part '../hive_adapters/onboarding_request_model.g.dart';
+import 'container_usage_request_model.dart';
 
+
+part '../hive_adapters/onboarding_request_model.g.dart';
 @HiveType(typeId: HiveTypeIds.onboardingRequestData)
 class OnboardingRequestModel {
   @HiveField(0)
@@ -13,7 +15,7 @@ class OnboardingRequestModel {
   @HiveField(2)
   DateTime selectedContainerLastUpdated;
   @HiveField(3)
-  List<WaterLogRequestDto> selectedContainer;
+  List<ContainerUsageRequestModel> selectedContainer;
 
   OnboardingRequestModel({
     required this.waterGoalLastUpdated,
@@ -41,7 +43,7 @@ class OnboardingRequestModel {
     DateTime? waterGoalLastUpdated,
     String? waterGoal,
     DateTime? selectedContainerLastUpdated,
-    List<WaterLogRequestDto>? selectedContainer,
+    List<ContainerUsageRequestModel>? selectedContainer,
   }) {
     return OnboardingRequestModel(
       waterGoalLastUpdated: waterGoalLastUpdated ?? this.waterGoalLastUpdated,
