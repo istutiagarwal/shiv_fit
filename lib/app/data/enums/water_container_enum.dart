@@ -1,6 +1,6 @@
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
-
+// shared by onboarding, home and water module
 enum WaterContainerType {
   glass,
   hydroFlask,

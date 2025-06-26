@@ -4,7 +4,7 @@ import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/images.dart';
 import 'package:shiv_fit/app/data/values/number.dart';
 import 'package:shiv_fit/app/modules/onboarding/controllers/onboarding_controller.dart';
-import 'package:shiv_fit/app/modules/onboarding/views/onboarding/bottom_sheets/custom_container_bottom_sheet.dart';
+import 'package:shiv_fit/app/modules/onboarding/views/bottom_sheets/custom_container_bottom_sheet.dart';
 import 'package:shiv_fit/app/routes/app_routes.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shiv_fit/app/data/enums/firebase_error_codes.dart';
+import 'package:shiv_fit/app/data/enums/firebase/firebase_error_codes.dart';
 import 'package:shiv_fit/app/data/values/error_messages.dart';
 import 'package:shiv_fit/utils/helper/api_exception.dart';
 import 'package:shiv_fit/utils/helper/firebase_exception_mapper.dart';

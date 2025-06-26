@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/base/base_controller.dart';
-import 'package:shiv_fit/app/data/models/dto/handle_error.dart';
+import 'package:shiv_fit/app/base/handle_error.dart';
 import 'package:shiv_fit/app/data/models/request/container_usage_request_model.dart';
 import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
 import 'package:shiv_fit/app/data/repository/water_repository.dart';

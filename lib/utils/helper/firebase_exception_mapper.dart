@@ -1,4 +1,4 @@
-import 'package:shiv_fit/app/data/enums/firebase_error_codes.dart';
+import 'package:shiv_fit/app/data/enums/firebase/firebase_error_codes.dart';
 
 class FirebaseExceptionMapper {
   static FirebaseErrorCode firebaseErrorCodeFromString(String code) {

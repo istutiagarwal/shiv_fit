@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shiv_fit/app/data/models/dto/data_wrapper.dart';
+import 'package:shiv_fit/app/base/data_wrapper.dart';
 import 'package:shiv_fit/app/data/values/error_messages.dart';
 import 'package:shiv_fit/utils/helper/firebase_exception_handler.dart';
 

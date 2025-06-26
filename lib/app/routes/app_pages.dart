@@ -8,7 +8,7 @@ import 'package:shiv_fit/app/modules/calender/week/views/week_calender_view.dart
 import 'package:shiv_fit/app/modules/home/bindings/home_binding.dart';
 import 'package:shiv_fit/app/modules/home/views/home_view.dart';
 import 'package:shiv_fit/app/modules/onboarding/bindings/onboarding_binding.dart';
-import 'package:shiv_fit/app/modules/onboarding/views/water_goal_onboarding_card.dart';
+import 'package:shiv_fit/app/modules/onboarding/views/screens/water_goal_onboarding_card.dart';
 import 'package:shiv_fit/app/modules/water/bindings/water_binding.dart';
 import 'package:shiv_fit/app/modules/water/views/screens/water_view.dart';
 

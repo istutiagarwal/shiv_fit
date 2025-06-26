@@ -1,6 +1,13 @@
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 
-enum WaterGoalEnum { one, onePointFive, two, twoPointFive, three, custom }
+enum WaterGoalEnum {
+  one,
+  onePointFive,
+  two,
+  twoPointFive,
+  three,
+  custom,
+}
 
 extension WaterGoalTypeExtension on WaterGoalEnum {
   String get label {

@@ -1,7 +1,7 @@
 import 'package:shiv_fit/app/data/models/request/container_usage_request_model.dart';
-import 'package:shiv_fit/app/data/models/request/onboarding_request_model.dart';
+import 'package:shiv_fit/app/modules/onboarding/data/request/onboarding_request_model.dart';
 import 'package:shiv_fit/app/data/models/response/container_usage_response_model.dart';
-import 'package:shiv_fit/app/data/models/response/onboarding_response_model.dart';
+import 'package:shiv_fit/app/modules/onboarding/data/response/onboarding_response_model.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/hive_box_names.dart';
 import 'package:shiv_fit/service/hive_service.dart';

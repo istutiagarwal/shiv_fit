@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/modules/onboarding/controllers/onboarding_controller.dart';
-import 'package:shiv_fit/app/modules/onboarding/views/preferred_container_card.dart';
+import 'package:shiv_fit/app/modules/onboarding/views/screens/preferred_container_card.dart';
 import 'package:shiv_fit/app/theme/app_colors.dart';
 import 'package:shiv_fit/app/theme/app_dimens.dart';
 import 'package:shiv_fit/app/theme/styles.dart';
