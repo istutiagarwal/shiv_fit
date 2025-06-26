@@ -126,11 +126,19 @@ class WaterCard extends GetView<WaterDayDetailsController>{
           SizedBox(
             height: AppDimens.dimens_20,
           ),
-          PrimaryActionButton(
-            icon: Icons.add,
-            label: AppConstant.water.addWater,
-            onPressed: () {},
-          ),
+          Obx((){
+            final isMultiple = controller.isMultipleContainersSelected.value;
+            return PrimaryActionButton(
+              icon: Icons.add,
+              label: AppConstant.water.addWater,
+              onPressed: () {
+                controller.onAddWater();
+                if(isMultiple){
+                  // open bottom sheet
+                }
+              },
+            );
+          }),
         ],
       ),
     );

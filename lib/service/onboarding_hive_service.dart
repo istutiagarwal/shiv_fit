@@ -1,5 +1,6 @@
 import 'package:shiv_fit/app/data/models/request/container_usage_request_model.dart';
 import 'package:shiv_fit/app/data/models/request/onboarding_request_model.dart';
+import 'package:shiv_fit/app/data/models/response/container_usage_response_model.dart';
 import 'package:shiv_fit/app/data/models/response/onboarding_response_model.dart';
 import 'package:shiv_fit/app/data/values/app_constant.dart';
 import 'package:shiv_fit/app/data/values/hive_box_names.dart';
@@ -53,7 +54,7 @@ class OnboardingHiveService {
     print("current ${current}");
     final updatedData = OnboardingRequestModel(
       waterGoalLastUpdated:  DateTime.fromMillisecondsSinceEpoch(0),
-      waterGoal: current?.waterGoal ?? "0" ,
+      waterGoal: current?.waterGoal ?? '',
       selectedContainer: selectedContainersList,
       selectedContainerLastUpdated: DateTime.now(),
     );
@@ -61,5 +62,15 @@ class OnboardingHiveService {
     print("updated data $updatedData");
 
     await box.put(onboardingKey,updatedData);
+  }
+
+  static Future<List<ContainerUsageResponseModel>?> getSelectedContainers() async {
+    print("inside getSelectedContainers");
+    final box = await HiveService.openBox<OnboardingResponseModel>(
+      HiveBoxNames.onboardingData,
+    );
+    final data = box.get(onboardingKey);
+    print("goal ${data}");
+    return data?.selectedContainer;
   }
 }

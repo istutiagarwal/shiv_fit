@@ -1,6 +1,7 @@
 import 'package:shiv_fit/app/base/base_repository.dart';
 import 'package:shiv_fit/app/data/models/dto/repo_response.dart';
 import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
+import 'package:shiv_fit/app/data/models/response/container_usage_response_model.dart';
 import 'package:shiv_fit/app/data/models/response/onboarding_response_model.dart';
 import 'package:shiv_fit/app/data/models/response/water_log_response_dto.dart';
 import 'package:shiv_fit/app/data/repository/water_repository.dart';
@@ -43,23 +44,54 @@ class WaterRepositoryImpl extends BaseRepository implements WaterRepository {
       print("inside try");
       final result = await firebaseService.fetch(
         collectionPath: CollectionPaths.onboardingData,
-         docId: AppConstant.devUserId,
+        docId: AppConstant.devUserId,
       );
       print("Firestore fetch result: ${result.data}");
       print("Firestore fetch error: ${result.error}");
       if (result.error != null) {
         print("error");
         print("fetching from hive");
-       final localData =  await OnboardingHiveService.getDailyWaterGoal();
+        final localData = await OnboardingHiveService.getDailyWaterGoal();
         print("fetching from hive ${localData}");
         return RepoResponse(
             error: APIException(message: result.error.toString()),
-        data: localData);
-      }
-      else if(result.data != null){
+            data: localData);
+      } else if (result.data != null) {
         print("data is not null");
         final onboardingModel = OnboardingResponseModel.fromJson(result.data!);
         return RepoResponse(data: onboardingModel.waterGoal);
+      }
+      return RepoResponse();
+    } catch (e) {
+      print("inside catch");
+      return RepoResponse(error: ExceptionHandler.handle(e));
+    }
+  }
+
+  @override
+  Future<RepoResponse<List<ContainerUsageResponseModel>>>
+      fetchSelectedContainersList() async {
+    print("inside repo fetchSelectedContainersList");
+    try {
+      print("inside try");
+      final result = await firebaseService.fetch(
+        collectionPath: CollectionPaths.onboardingData,
+        docId: AppConstant.devUserId,
+      );
+      print("Firestore fetch result: ${result.data}");
+      print("Firestore fetch error: ${result.error}");
+      if (result.error != null) {
+        print("error");
+        print("fetching from hive");
+        final localData = await OnboardingHiveService.getSelectedContainers();
+        print("fetching from hive ${localData}");
+        return RepoResponse(
+            error: APIException(message: result.error.toString()),
+            data: localData);
+      } else if (result.data != null) {
+        print("data is not null");
+        final onboardingModel = OnboardingResponseModel.fromJson(result.data!);
+        return RepoResponse(data: onboardingModel.selectedContainer);
       }
       return RepoResponse();
     } catch (e) {

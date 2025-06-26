@@ -9,6 +9,7 @@ class WaterDayDetailsController extends BaseController<WaterRepository> {
   final Rx<DateTime> date = DateTime.now().obs;
   final Rx<String> dailyWaterGoal = ''.obs;
   late RxDouble currentWaterIntake;
+  final Rx<bool> isMultipleContainersSelected = false.obs;
   final List<ContainerUsageRequestModel> containers = [
     ContainerUsageRequestModel(
       count: 4,
@@ -55,10 +56,19 @@ class WaterDayDetailsController extends BaseController<WaterRepository> {
     fetchDailyWaterGoal();
   }
 
-  Future<void> onAddWater(WaterLogRequestDto waterLog) async {
-    final response = await repository.uploadWaterLog(waterLog);
+  Future<void> onAddWater() async {
+    final response = await repository.fetchSelectedContainersList();
     if (response.data != null) {
-      //currentWaterIntake.value = currentWaterIntake.value + response.data.;
+      if(response.data?.length ==1){
+        print("i1a1 controller response ${response.data}");
+        // add that much
+        //currentWaterIntake.value = currentWaterIntake.value + response.data.;
+      }
+      else{
+        print("i1a1 controller response ${response.data}");
+        isMultipleContainersSelected.value = true;
+      }
+
     } else {
       HandleError.handleError(response.error);
     }

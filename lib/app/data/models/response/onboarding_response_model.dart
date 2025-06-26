@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
 import 'package:shiv_fit/app/data/models/request/water_log_request_dto.dart';
+import 'package:shiv_fit/app/data/models/response/container_usage_response_model.dart';
 import 'package:shiv_fit/utils/hive_type_ids.dart';
+import 'package:shiv_fit/widgets/text_field/custom_text_field.dart';
 
-part  '../hive_adapters/onboarding_response_model.g.dart';
+ part  '../hive_adapters/onboarding_response_model.g.dart';
 
 @HiveType(typeId: HiveTypeIds.onboardingResponseData)
 class OnboardingResponseModel {
@@ -16,7 +18,7 @@ class OnboardingResponseModel {
   final DateTime selectedContainerLastUpdated;
 
   @HiveField(3)
-  final List<WaterLogRequestDto> selectedContainer;
+  final List<ContainerUsageResponseModel> selectedContainer;
 
   OnboardingResponseModel({
     required this.waterGoalLastUpdated,
@@ -31,7 +33,7 @@ class OnboardingResponseModel {
       waterGoalLastUpdated: DateTime.tryParse(json['waterGoalLastUpdated'] ?? '') ?? DateTime.now(),
       selectedContainerLastUpdated: DateTime.tryParse(json['selectedContainerLastUpdated'] ?? '') ?? DateTime.now(),
       selectedContainer: (json['selectedContainer'] as List<dynamic>? ?? [])
-          .map((e) => WaterLogRequestDto.fromJson(Map<String, dynamic>.from(e)))
+          .map((e) => ContainerUsageResponseModel.fromJson(Map<String, dynamic>.from(e)))
           .toList(),
     );
   }

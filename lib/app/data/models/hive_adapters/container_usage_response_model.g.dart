@@ -1,43 +1,42 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../response/onboarding_response_model.dart';
+part of '../response/container_usage_response_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class OnboardingResponseModelAdapter
-    extends TypeAdapter<OnboardingResponseModel> {
+class ContainerUsageResponseModelAdapter
+    extends TypeAdapter<ContainerUsageResponseModel> {
   @override
-  final int typeId = 4;
+  final int typeId = 8;
 
   @override
-  OnboardingResponseModel read(BinaryReader reader) {
+  ContainerUsageResponseModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return OnboardingResponseModel(
-      waterGoalLastUpdated: fields[0] as DateTime,
-      waterGoal: fields[1] as String,
-      selectedContainer:
-          (fields[3] as List).cast<ContainerUsageResponseModel>(),
-      selectedContainerLastUpdated: fields[2] as DateTime,
+    return ContainerUsageResponseModel(
+      containerName: fields[0] as String?,
+      volume: fields[1] as String?,
+      count: fields[2] as int?,
+      percentageUsed: fields[3] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, OnboardingResponseModel obj) {
+  void write(BinaryWriter writer, ContainerUsageResponseModel obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.waterGoalLastUpdated)
+      ..write(obj.containerName)
       ..writeByte(1)
-      ..write(obj.waterGoal)
+      ..write(obj.volume)
       ..writeByte(2)
-      ..write(obj.selectedContainerLastUpdated)
+      ..write(obj.count)
       ..writeByte(3)
-      ..write(obj.selectedContainer);
+      ..write(obj.percentageUsed);
   }
 
   @override
@@ -46,7 +45,7 @@ class OnboardingResponseModelAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is OnboardingResponseModelAdapter &&
+      other is ContainerUsageResponseModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

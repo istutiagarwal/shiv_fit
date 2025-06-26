@@ -7,4 +7,5 @@ class HiveTypeIds {
   static const int hydrationReminderRequestData = 5;
   static const int hydrationReminderResponseData = 6;
   static const int containerUsageRequestModel = 7;
+  static const int containerUsageResponseModel = 8;
 }
